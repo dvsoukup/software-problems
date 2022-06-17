@@ -4,11 +4,15 @@
   "description": "Sample Project",
   "main": "dist/server.js",
   "scripts": {
-    "build": "rm -rf ./dist && tsc",
+    "start": "tsc-watch --onSuccess \"node --inspect dist/server.js\"",
+    "start:dev1": "tsc-watch --onSuccess \"ts-node-dev --inspect -- src/server.ts\"",
+    "start:dev": "rm -rf ./dist/ && tsc && node dist/server.js",
+    "build": "rm -rf ./dist/ && tsc",
+    "build-watch": "rm -rf ./dist/ && tsc-watch",
     "test": "jest --runInBand",
-    "test:coverage": "jest --maxWorkers=1 --coverage",
-    "test:watch": "jest --maxWorkers=1 --watch",
-    "format:all": "prettier --write .\\**\\*.ts"
+    "test:cov": "jest --coverage --runInBand",
+    "format": "prettier --write ./**/*.ts",
+    "deps": "rm -rf ./node_modules/ && yarn install"
   },
   "author": "Darren Soukup",
   "license": "ISC",
